@@ -1,0 +1,40 @@
+{
+	"name":"XiaoMing",
+	"sex":"1",
+	"age": 123,
+	"address":null,
+	"uid":9876543210123456,
+	"unuse":"unuse value",
+	"list":[1,2,3,4,5,6],
+	"dict":
+			{
+				"value1":"1",
+				"value2":2
+			},
+	"bYes":"Yes",
+	"bTrue":true,
+	"b0":0,
+	"b1":1,
+	"bNo":"no",
+	"bFalse":false,
+	"model":
+			{
+				"name":"SubModel",
+				"size":123
+			},
+	"models":
+			[
+				{
+					"name":"SubModel1",
+					"size":1
+				},
+				{
+					"name":"SubModel2",
+					"size":2
+				},
+				{
+					"name":"SubModel3",
+					"size":3
+				},
+			]
+}
