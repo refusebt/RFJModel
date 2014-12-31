@@ -128,8 +128,8 @@ static char* s_RFJModelPropertyTypeName[] =
 							for (NSInteger i = 0; i < models.count; i++)
 							{
 								RFJModel *model = models[i];
+								[buffer appendFormat:@"\n\t%@-", indentString];
 								[model descriptionWithBuffer:buffer indent:indent+1];
-								[buffer appendFormat:@"\n"];
 							}
 						}
 						break;
@@ -238,7 +238,7 @@ static char* s_RFJModelPropertyTypeName[] =
 {
 	if (value == nil || value == [NSNull null])
 	{
-		return nil;
+		return JMODEL_RETRUN_EMPTY_STRING;
 	}
 	
 	if ([value isKindOfClass:[NSString class]])
@@ -251,7 +251,7 @@ static char* s_RFJModelPropertyTypeName[] =
 		return  [value stringValue];
 	}
 	
-	return nil;
+	return JMODEL_RETRUN_EMPTY_STRING;
 }
 
 + (NSInteger)toIntegerWithJsonValue:(id)value

@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#define	JMODEL_RETRUN_EMPTY_STRING			@""
+
 #define JProperty(Property, MapName)	\
 	@property (nonatomic, setter=_rfjm_##MapName:) Property
+
+#define IS_EMPTY_STR(value)	\
+	[NSString isEmpty:value]
 
 #define J2Str(value)	\
 	[RFJModel toStringWithJsonValue:value]
