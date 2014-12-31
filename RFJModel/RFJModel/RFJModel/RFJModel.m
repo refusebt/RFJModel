@@ -111,14 +111,27 @@ static char* s_RFJModelPropertyTypeName[] =
 			{
 				// JProperty
 				id value = [self valueForKey:pi.name];
-				[buffer appendFormat:@"JP name:%@ value:%@ type:%s map:%@\n", pi.name, value, s_RFJModelPropertyTypeName[pi.type], pi.mapName];
+				if ([value isKindOfClass:[RFJModel class]])
+				{
+					[buffer appendFormat:@"%@JP name:%@ type:%s map:%@ value:\n", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName];
+					RFJModel *model = value;
+					[model descriptionWithBuffer:buffer indent:indent+1];
+				}
+				else
+				{
+					NSString *valueString = [NSString stringWithFormat:@"%@", value];
+					valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+					[buffer appendFormat:@"%@JP name:%@ type:%s map:%@ value:%@\n", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName, valueString];
+				}
 			}
 			else
 			{
 				// no JProperty
 				NSString *name = [NSString stringWithUTF8String:property_getName(property)];
 				id value = [self valueForKey:name];
-				[buffer appendFormat:@" P name:%@ value:%@ \n", name, value];
+				NSString *valueString = [NSString stringWithFormat:@"%@", value];
+				valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+				[buffer appendFormat:@"%@ P name:%@ value:%@\n", indentString, name, valueString];
 			}
 		}
 		free(properties);
@@ -451,8 +464,8 @@ static char* s_RFJModelPropertyTypeName[] =
 		}
 		else if ([attrib hasPrefix:@"S"] && attrib.length > 7)
 		{
-			// S_rfm_mapName:
-			info.mapName = [attrib substringWithRange:NSMakeRange(6, attrib.length-7)];
+			// S_rfjm_mapName:
+			info.mapName = [attrib substringWithRange:NSMakeRange(7, attrib.length-8)];
 		}
 		else if ([attrib hasPrefix:@"V"] && attrib.length > 1)
 		{

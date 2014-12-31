@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define JProperty(Property, MapName)	\
-	@property (nonatomic, setter=_rfm_##MapName:) Property
+	@property (nonatomic, setter=_rfjm_##MapName:) Property
 
 #define J2Str(value)	\
 	[RFJModel toStringWithJsonValue:value]
