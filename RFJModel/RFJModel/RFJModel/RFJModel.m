@@ -19,9 +19,13 @@ typedef NS_ENUM(NSUInteger, RFJModelPropertyType)
 	RFJModelPropertyTypeFloat,
 	RFJModelPropertyTypeDouble,
 	RFJModelPropertyTypeString,
+	RFJModelPropertyTypeMutableString,
 	RFJModelPropertyTypeArray,
+	RFJModelPropertyTypeMutableArray,
 	RFJModelPropertyTypeModelArray,
+	RFJModelPropertyTypeMutableModelArray,
 	RFJModelPropertyTypeDictionary,
+	RFJModelPropertyTypeMutableDictionary,
 	RFJModelPropertyTypeModel,
 };
 
@@ -35,9 +39,13 @@ static char* s_RFJModelPropertyTypeName[] =
 	"RFJModelPropertyTypeFloat",
 	"RFJModelPropertyTypeDouble",
 	"RFJModelPropertyTypeString",
+	"RFJModelPropertyTypeMutableString",
 	"RFJModelPropertyTypeArray",
+	"RFJModelPropertyTypeMutableArray",
 	"RFJModelPropertyTypeModelArray",
+	"RFJModelPropertyTypeMutableModelArray",
 	"RFJModelPropertyTypeDictionary",
+	"RFJModelPropertyTypeMutableDictionary",
 	"RFJModelPropertyTypeModel"
 };
 
@@ -122,6 +130,7 @@ static char* s_RFJModelPropertyTypeName[] =
 						}
 						break;
 					case RFJModelPropertyTypeModelArray:
+					case RFJModelPropertyTypeMutableModelArray:
 						{
 							[buffer appendFormat:@"\n%@JP name:%@ type:%s map:%@ value:", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName];
 							NSArray *models = value;
@@ -188,12 +197,35 @@ static char* s_RFJModelPropertyTypeName[] =
 					[self setValue:J2NumDouble(jsonDict[key]) forKey:info.name];
 					break;
 				case RFJModelPropertyTypeString:
-					[self setValue:J2Str(jsonDict[key]) forKey:info.name];
+					{
+						NSString *value = J2Str(jsonDict[key]);
+						if (value != nil)
+							[self setValue:value forKey:info.name];
+					}
+					break;
+				case RFJModelPropertyTypeMutableString:
+					{
+						NSString *value = J2Str(jsonDict[key]);
+						if (value != nil)
+							[self setValue:[RFJModel deepMutableCopyWithJson:value] forKey:info.name];
+					}
 					break;
 				case RFJModelPropertyTypeArray:
-					[self setValue:J2Array(jsonDict[key]) forKey:info.name];
+					{
+						NSArray *value = J2Array(jsonDict[key]);
+						if (value != nil)
+							[self setValue:value forKey:info.name];
+					}
+					break;
+				case RFJModelPropertyTypeMutableArray:
+					{
+						NSArray *value = J2Array(jsonDict[key]);
+						if (value != nil)
+							[self setValue:[RFJModel deepMutableCopyWithJson:value] forKey:info.name];
+					}
 					break;
 				case RFJModelPropertyTypeModelArray:
+				case RFJModelPropertyTypeMutableModelArray:
 					{
 						NSArray *array = J2Array(jsonDict[key]);
 						if (array != nil)
@@ -209,12 +241,27 @@ static char* s_RFJModelPropertyTypeName[] =
 									[models addObject:model];
 								}
 							}
-							[self setValue:[NSArray arrayWithArray:models] forKey:info.name];
+							
+							if (info.type == RFJModelPropertyTypeModelArray)
+								[self setValue:[NSArray arrayWithArray:models] forKey:info.name];
+							else
+								[self setValue:models forKey:info.name];
 						}
 					}
 					break;
 				case RFJModelPropertyTypeDictionary:
-					[self setValue:J2Dict(jsonDict[key]) forKey:info.name];
+					{
+						NSDictionary *value = J2Dict(jsonDict[key]);
+						if (value != nil)
+							[self setValue:value forKey:info.name];
+					}
+					break;
+				case RFJModelPropertyTypeMutableDictionary:
+					{
+						NSDictionary *value = J2Dict(jsonDict[key]);
+						if (value != nil)
+							[self setValue:[RFJModel deepMutableCopyWithJson:value] forKey:info.name];
+					}
 					break;
 				case RFJModelPropertyTypeModel:
 					{
@@ -419,6 +466,47 @@ static char* s_RFJModelPropertyTypeName[] =
 	return nil;
 }
 
++ (id)deepMutableCopyWithJson:(id)json
+{
+	if (json == nil || [json isKindOfClass:[NSNull class]])
+	{
+		return [NSMutableString stringWithFormat:@""];
+	}
+	
+	if ([json isKindOfClass:[NSString class]])
+	{
+		return [NSMutableString stringWithFormat:@"%@", json];
+	}
+	
+	if ([json isKindOfClass:[NSNumber class]])
+	{
+		return json;
+	}
+	
+	if ([json isKindOfClass:[NSArray class]])
+	{
+		NSMutableArray *array = [NSMutableArray array];
+		for (id value in json)
+		{
+			[array addObject:[RFJModel deepMutableCopyWithJson:value]];
+		}
+		return array;
+	}
+	
+	if ([json isKindOfClass:[NSDictionary class]])
+	{
+		NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+		for (NSString *key in json)
+		{
+			id value = [RFJModel deepMutableCopyWithJson:json[key]];
+			[dict setObject:value forKey:key];
+		}
+		return dict;
+	}
+	
+	return json;
+}
+
 + (NSMutableDictionary *)modelInfos
 {
 	static NSMutableDictionary *s_instance = nil;
@@ -526,9 +614,17 @@ static char* s_RFJModelPropertyTypeName[] =
 		{
 			info.type = RFJModelPropertyTypeString;
 		}
+		else if ([typeAttrib hasPrefix:@"T@\"NSMutableString\""])
+		{
+			info.type = RFJModelPropertyTypeMutableString;
+		}
 		else if ([typeAttrib hasPrefix:@"T@\"NSArray\""])
 		{
 			info.type = RFJModelPropertyTypeArray;
+		}
+		else if ([typeAttrib hasPrefix:@"T@\"NSMutableArray\""])
+		{
+			info.type = RFJModelPropertyTypeMutableArray;
 		}
 		else if ([typeAttrib hasPrefix:@"T@\"NSArray<"])
 		{
@@ -542,9 +638,25 @@ static char* s_RFJModelPropertyTypeName[] =
 				info.modelClass = cls;
 			}
 		}
+		else if ([typeAttrib hasPrefix:@"T@\"NSMutableArray<"])
+		{
+			// T@"NSMutableArray<ClassName>"
+			const char *className = [[typeAttrib substringWithRange:NSMakeRange(18, typeAttrib.length-20)] cStringUsingEncoding:NSUTF8StringEncoding];
+			Class cls = objc_getClass(className);
+			if (cls != nil && [cls isSubclassOfClass:[RFJModel class]])
+			{
+				info.type = RFJModelPropertyTypeMutableModelArray;
+				info.modelClassName = className;
+				info.modelClass = cls;
+			}
+		}
 		else if ([typeAttrib hasPrefix:@"T@\"NSDictionary\""])
 		{
 			info.type = RFJModelPropertyTypeDictionary;
+		}
+		else if ([typeAttrib hasPrefix:@"T@\"NSMutableDictionary\""])
+		{
+			info.type = RFJModelPropertyTypeMutableDictionary;
 		}
 		else if ([typeAttrib hasPrefix:@"T@"] && typeAttrib.length > 4)
 		{

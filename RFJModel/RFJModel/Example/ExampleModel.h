@@ -55,6 +55,15 @@ JProperty(NSArray *list, list);
 JProperty(NSDictionary *dict, dict);
 JProperty(ExampleModelTestSub *subModel, model);
 JProperty(NSArray<ExampleModelTestSub> *subModels, models);
+JProperty(NSMutableString *mstr, mstr);
+JProperty(NSMutableArray *mArray, mArray);
+JProperty(NSMutableDictionary *mDict, mDict);
+JProperty(NSMutableArray<ExampleModelTestSub> *mModelArray, mModelArray);
+JProperty(NSString *errString, errString);
+JProperty(NSArray *errArray, errArray);
+JProperty(NSDictionary *errDict, errDict);
+JProperty(NSArray<ExampleModelTestSub> *errModelArray, errModelArray);
+JProperty(ExampleModelTestSub *errModel, errModel);
 @end
 
 @interface ExampleModelTestChild : ExampleModelTestJson

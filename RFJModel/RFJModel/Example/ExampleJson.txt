@@ -48,5 +48,14 @@
 							"name":"GM3"
 						},
 				},
-			]
+			],
+	"mstr":"mutableString",
+	"mArray":[{"k":"v"}, "string", [1, 2],],
+	"mDict":{"k1":"string", "k2":[1,2], "k3":{"k":"v"},},
+	"mModelArray":[{"name":"SubModel","size":123},{"name":"SubModel","size":123},],
+	"errString" : [],
+	"errArray" : {},
+	"errDict" : "errString",
+	"errModelArray" : "errString",
+	"errModel" : "errModel",
 }
