@@ -26,15 +26,27 @@
 			[
 				{
 					"name":"SubModel1",
-					"size":1
+					"size":1,
+					"GrandsonModel":
+						{
+							"name":"GM1"
+						},
 				},
 				{
 					"name":"SubModel2",
-					"size":2
+					"size":2,
+					"GrandsonModel":
+						{
+							"name":"GM2"
+						},
 				},
 				{
 					"name":"SubModel3",
-					"size":3
+					"size":3,
+					"GrandsonModel":
+						{
+							"name":"GM3"
+						},
 				},
 			]
 }

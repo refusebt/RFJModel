@@ -14,6 +14,7 @@
 @class ExampleModelTestJson;
 @class ExampleModelTestChild;
 @class ExampleModelTestSub;
+@class GrandsonModel;
 
 @protocol ExampleModelTestSub
 @end
@@ -71,4 +72,10 @@ JProperty(BOOL bFalse, bFalse);
 @interface ExampleModelTestSub : RFJModel
 JProperty(NSString *name, name);
 JProperty(NSInteger size, size);
+JProperty(GrandsonModel *gm, GrandsonModel);
+@end
+
+@interface GrandsonModel : RFJModel
+JProperty(NSString *name, name);
+@property (nonatomic, assign) int64_t tag;
 @end

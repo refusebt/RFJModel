@@ -19,3 +19,6 @@
 
 @implementation ExampleModelTestSub
 @end
+
+@implementation GrandsonModel
+@end

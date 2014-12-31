@@ -108,8 +108,6 @@
 + (id)toArrayWithJsonValue:(id)value;
 + (id)toDictionaryWithJsonValue:(id)value;
 
-//+ (id)deepMutableCopyWithObject:(id)object;
-
 @end
 
 #pragma mark NSString (RFJModel)

@@ -97,6 +97,7 @@ static char* s_RFJModelPropertyTypeName[] =
 	{
 		[indentString appendString:@"\t"];
 	}
+	NSString *replaceString = [NSString stringWithFormat:@"\n%@", indentString];
 	
 	Class current = [self class];
 	while (current != [RFJModel class])
@@ -111,17 +112,34 @@ static char* s_RFJModelPropertyTypeName[] =
 			{
 				// JProperty
 				id value = [self valueForKey:pi.name];
-				if ([value isKindOfClass:[RFJModel class]])
+				switch (pi.type)
 				{
-					[buffer appendFormat:@"%@JP name:%@ type:%s map:%@ value:\n", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName];
-					RFJModel *model = value;
-					[model descriptionWithBuffer:buffer indent:indent+1];
-				}
-				else
-				{
-					NSString *valueString = [NSString stringWithFormat:@"%@", value];
-					valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-					[buffer appendFormat:@"%@JP name:%@ type:%s map:%@ value:%@\n", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName, valueString];
+					case RFJModelPropertyTypeModel:
+						{
+							[buffer appendFormat:@"\n%@JP name:%@ type:%s map:%@ value:", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName];
+							RFJModel *model = value;
+							[model descriptionWithBuffer:buffer indent:indent+1];
+						}
+						break;
+					case RFJModelPropertyTypeModelArray:
+						{
+							[buffer appendFormat:@"\n%@JP name:%@ type:%s map:%@ value:", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName];
+							NSArray *models = value;
+							for (NSInteger i = 0; i < models.count; i++)
+							{
+								RFJModel *model = models[i];
+								[model descriptionWithBuffer:buffer indent:indent+1];
+								[buffer appendFormat:@"\n"];
+							}
+						}
+						break;
+					default:
+						{
+							NSString *valueString = [value description];
+							valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:replaceString];
+							[buffer appendFormat:@"\n%@JP name:%@ type:%s map:%@ value:%@", indentString, pi.name, s_RFJModelPropertyTypeName[pi.type], pi.mapName, valueString];
+						}
+						break;
 				}
 			}
 			else
@@ -129,9 +147,9 @@ static char* s_RFJModelPropertyTypeName[] =
 				// no JProperty
 				NSString *name = [NSString stringWithUTF8String:property_getName(property)];
 				id value = [self valueForKey:name];
-				NSString *valueString = [NSString stringWithFormat:@"%@", value];
-				valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-				[buffer appendFormat:@"%@ P name:%@ value:%@\n", indentString, name, valueString];
+				NSString *valueString = [value description];
+				valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:replaceString];
+				[buffer appendFormat:@"\n%@ P name:%@ value:%@", indentString, name, valueString];
 			}
 		}
 		free(properties);
