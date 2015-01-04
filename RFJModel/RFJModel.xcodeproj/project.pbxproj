@@ -18,6 +18,8 @@
 		78DA977F1A539581006B0597 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97791A539581006B0597 /* ExampleModel.m */; };
 		78DA97801A539581006B0597 /* ExampleType.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78DA977A1A539581006B0597 /* ExampleType.txt */; };
 		78DA97811A539581006B0597 /* RFJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA977D1A539581006B0597 /* RFJModel.m */; };
+		78DC80251A58DCB100D2019F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 78DC80241A58DCB100D2019F /* README.md */; };
+		78DC80271A590C5400D2019F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78DC80261A590C5400D2019F /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		78DA977A1A539581006B0597 /* ExampleType.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExampleType.txt; sourceTree = "<group>"; };
 		78DA977C1A539581006B0597 /* RFJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJModel.h; sourceTree = "<group>"; };
 		78DA977D1A539581006B0597 /* RFJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJModel.m; sourceTree = "<group>"; };
+		78DC80241A58DCB100D2019F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		78DC80261A590C5400D2019F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 		78DA97441A53951B006B0597 = {
 			isa = PBXGroup;
 			children = (
+				78DC80261A590C5400D2019F /* LICENSE */,
+				78DC80241A58DCB100D2019F /* README.md */,
 				78DA974F1A53951B006B0597 /* RFJModel */,
 				78DA97691A53951B006B0597 /* RFJModelTests */,
 				78DA974E1A53951B006B0597 /* Products */,
@@ -231,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DC80271A590C5400D2019F /* LICENSE in Resources */,
 				78DA97801A539581006B0597 /* ExampleType.txt in Resources */,
 				78DA975C1A53951B006B0597 /* Main.storyboard in Resources */,
 				78DA97611A53951B006B0597 /* LaunchScreen.xib in Resources */,
@@ -253,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DC80251A58DCB100D2019F /* README.md in Sources */,
 				78DA97591A53951B006B0597 /* ViewController.m in Sources */,
 				78DA97561A53951B006B0597 /* AppDelegate.m in Sources */,
 				78DA97811A539581006B0597 /* RFJModel.m in Sources */,
@@ -452,6 +460,7 @@
 				78DA97721A53951B006B0597 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78DA97731A53951B006B0597 /* Build configuration list for PBXNativeTarget "RFJModelTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +469,7 @@
 				78DA97751A53951B006B0597 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
