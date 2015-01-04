@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define	JMODEL_RETRUN_EMPTY_STRING			@""
-
 #define JProperty(Property, MapName)	\
 	@property (nonatomic, setter=_rfjm_##MapName:) Property
 

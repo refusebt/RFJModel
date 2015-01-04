@@ -199,8 +199,7 @@ static char* s_RFJModelPropertyTypeName[] =
 				case RFJModelPropertyTypeString:
 					{
 						NSString *value = J2Str(jsonDict[key]);
-						if (value != nil)
-							[self setValue:value forKey:info.name];
+						[self setValue:value forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeMutableString:
@@ -208,13 +207,14 @@ static char* s_RFJModelPropertyTypeName[] =
 						NSString *value = J2Str(jsonDict[key]);
 						if (value != nil)
 							[self setValue:[RFJModel deepMutableCopyWithJson:value] forKey:info.name];
+						else
+							[self setValue:nil forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeArray:
 					{
 						NSArray *value = J2Array(jsonDict[key]);
-						if (value != nil)
-							[self setValue:value forKey:info.name];
+						[self setValue:value forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeMutableArray:
@@ -222,6 +222,8 @@ static char* s_RFJModelPropertyTypeName[] =
 						NSArray *value = J2Array(jsonDict[key]);
 						if (value != nil)
 							[self setValue:[RFJModel deepMutableCopyWithJson:value] forKey:info.name];
+						else
+							[self setValue:nil forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeModelArray:
@@ -247,13 +249,14 @@ static char* s_RFJModelPropertyTypeName[] =
 							else
 								[self setValue:models forKey:info.name];
 						}
+						else
+							[self setValue:nil forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeDictionary:
 					{
 						NSDictionary *value = J2Dict(jsonDict[key]);
-						if (value != nil)
-							[self setValue:value forKey:info.name];
+						[self setValue:value forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeMutableDictionary:
@@ -261,6 +264,8 @@ static char* s_RFJModelPropertyTypeName[] =
 						NSDictionary *value = J2Dict(jsonDict[key]);
 						if (value != nil)
 							[self setValue:[RFJModel deepMutableCopyWithJson:value] forKey:info.name];
+						else
+							[self setValue:nil forKey:info.name];
 					}
 					break;
 				case RFJModelPropertyTypeModel:
@@ -272,6 +277,8 @@ static char* s_RFJModelPropertyTypeName[] =
 							[model fillWithJsonDict:dict];
 							[self setValue:model forKey:info.name];
 						}
+						else
+							[self setValue:nil forKey:info.name];
 					}
 					break;
 				default:
@@ -285,7 +292,7 @@ static char* s_RFJModelPropertyTypeName[] =
 {
 	if (value == nil || value == [NSNull null])
 	{
-		return JMODEL_RETRUN_EMPTY_STRING;
+		return nil;
 	}
 	
 	if ([value isKindOfClass:[NSString class]])
@@ -298,7 +305,7 @@ static char* s_RFJModelPropertyTypeName[] =
 		return  [value stringValue];
 	}
 	
-	return JMODEL_RETRUN_EMPTY_STRING;
+	return nil;
 }
 
 + (NSInteger)toIntegerWithJsonValue:(id)value
@@ -554,6 +561,7 @@ static char* s_RFJModelPropertyTypeName[] =
 	return mapProperInfos;
 }
 
+// TODO: NSScanner
 + (RFJModelPropertyInfo *)propertyInfoWithProperty:(objc_property_t *)property
 {
 	RFJModelPropertyInfo *info = [[RFJModelPropertyInfo alloc] init];
