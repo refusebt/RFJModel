@@ -40,9 +40,9 @@ JProperty(NSString *value_NSString, map_value_NSString);
 @end
 ```
 ####3、RFJModel设计的目的之一，是为了尽可能减少由于服务端接口定义或返回有误导致IOS客户端崩溃的问题。所以引入以下几个特性
-  1)所有的[NSNull null]对象都会被适当转换，不会赋值到JProperty属性。（因缺乏对[NSNull null]防护导致的崩溃，是JSON解析崩溃最主要的原因）
-  2)赋值时，会根据JProperty声明的属性类型对JSON值进行转换。比如JSON中的Number赋值时可以被自动转换为NSString。
-  3)JSON字典中多余或者缺失的字段不报错。
+*所有的[NSNull null]对象都会被适当转换，不会赋值到JProperty属性。（因缺乏对[NSNull null]防护导致的崩溃，是JSON解析崩溃最主要的原因）
+*赋值时，会根据JProperty声明的属性类型对JSON值进行转换。比如JSON中的Number赋值时可以被自动转换为NSString。
+*JSON字典中多余或者缺失的字段不报错。
 
 ####4、RFJModel支持继承
 ```objective-c
