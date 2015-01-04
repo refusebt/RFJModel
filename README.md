@@ -1,7 +1,7 @@
 RFJModel
 ========
 
-RFJModel是一个IOS类库，可以将JSON字典自动装填到OBJC对象。
+RFJModel是一个IOS类库，可以将JSON字典自动装填到OBJC对象。相比JSONModel有一些非常好的特性，使用上也比较简单。
 
 RFJModel有以下几个特点
 
