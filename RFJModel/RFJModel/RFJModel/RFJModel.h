@@ -97,6 +97,8 @@
 	
 }
 
+- (id)initWithJsonDict:(NSDictionary *)jsonDict;
+
 - (void)fillWithJsonDict:(NSDictionary *)jsonDict;
 
 + (NSString *)toStringWithJsonValue:(id)value;

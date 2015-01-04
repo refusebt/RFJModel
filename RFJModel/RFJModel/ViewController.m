@@ -45,9 +45,8 @@
 	NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 	self.tvJson.text = content;
 	
-	ExampleModelTestJson *model = [[ExampleModelTestJson alloc] init];
 	NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:filePath] options:NSJSONReadingMutableContainers error:nil];
-	[model fillWithJsonDict:json];
+	ExampleModelTestJson *model = [[ExampleModelTestJson alloc] initWithJsonDict:json];
 	self.tvResult.text = [model description];
 	
 	NSLog(@"\ninput:\n%@\n\noutput:\n%@", self.tvJson.text, self.tvResult.text);
@@ -59,9 +58,8 @@
 	NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 	self.tvJson.text = content;
 	
-	ExampleModelTestChild *model = [[ExampleModelTestChild alloc] init];
 	NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:filePath] options:NSJSONReadingMutableContainers error:nil];
-	[model fillWithJsonDict:json];
+	ExampleModelTestChild *model = [[ExampleModelTestChild alloc] initWithJsonDict:json];
 	self.tvResult.text = [model description];
 	
 	NSLog(@"\ninput:\n%@\n\noutput:\n%@", self.tvJson.text, self.tvResult.text);

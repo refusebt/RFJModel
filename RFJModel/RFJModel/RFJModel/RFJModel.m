@@ -91,6 +91,16 @@ static char* s_RFJModelPropertyTypeName[] =
 	return self;
 }
 
+- (id)initWithJsonDict:(NSDictionary *)jsonDict
+{
+	self = [super init];
+	if (self)
+	{
+		[self fillWithJsonDict:jsonDict];
+	}
+	return self;
+}
+
 - (NSString *)description
 {
 	NSMutableString *buffer = [NSMutableString string];

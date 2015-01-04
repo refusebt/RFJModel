@@ -24,9 +24,8 @@ JProperty(NSString *value_NSString, map_value_NSString);
 }
 ```
 ```objective-c
-ExampleJModel *model = [[ExampleJModel alloc] init];
 NSDictionary *json = ...;
-[model fillWithJsonDict:json];
+ExampleJModel *model = [[ExampleJModel alloc] initWithJsonDict:json];
 NSLog(@"%@", model.value_NSString);
 ```
 
@@ -62,14 +61,12 @@ JProperty(NSString *name, name);
 }
 ```
 ```objective-c
-ExampleJModel *model = [[ExampleJModel alloc] init];
 NSDictionary *json = ...;
-[model fillWithJsonDict:json];
+ExampleJModel *model = [[ExampleJModel alloc] initWithJsonDict:json];
 NSLog(@"%@", model.value_NSString);	// "hello world"
 
-ExampleJSubModel *model = [[ExampleJModel alloc] init];
 NSDictionary *json = ...;
-[model fillWithJsonDict:json];
+ExampleJSubModel *model = [[ExampleJSubModel alloc] initWithJsonDict:json];
 NSLog(@"%@", model.value_NSString);	// "hello world"
 NSLog(@"%@", model.name);	// "Tom"
 ```
