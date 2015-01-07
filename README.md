@@ -68,7 +68,7 @@ ExampleJSubModel *model = [[ExampleJSubModel alloc] initWithJsonDict:json];
 NSLog(@"%@", model.value_NSString);	// "hello world"
 NSLog(@"%@", model.name);	// "Tom"
 ```
-####5、JProperty支持的类型包括RFJModel的子类。
+####5. JProperty supports RFJModel subclass.
 ```objective-c
 @interface ExampleJModel : RFJModel
 JProperty(NSString *value_NSString, map_value_NSString);
