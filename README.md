@@ -129,8 +129,8 @@ JProperty(NSString *name, name);
 * NSDictionary
 * NSMutableDictionary
 * RFJModel's subclass
-* NSArray <RFJModel's subclass>
-* NSMutableArray <RFJModel's subclass>
+* NSArray (RFJModel's subclass)
+* NSMutableArray (RFJModel's subclass)
 
 ========
 
