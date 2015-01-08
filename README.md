@@ -131,6 +131,8 @@ JProperty(NSString *name, name);
 * NSArray (RFJModel's subclass)
 * NSMutableArray (RFJModel's subclass)
 
+Finally, thanks to @sunpc for the translation.
+
 ========
 
 RFJModel是一个IOS类库，可以将JSON字典自动装填到OBJC对象。相比其他JSON装填库，RFJModel使用上更为简单，限制更少。
