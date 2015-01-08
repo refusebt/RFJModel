@@ -1,12 +1,11 @@
 RFJModel
 ========
 
-RFJModel is a JSON loading library. It's more easy to use. Compared with other libraries, it's more easiler and less restrictions to use.
+RFJModel is an easy-to-use JSON loading library. In comparing with other libraries, it's much easiler and less restricted to use. RFJModel has the following characteristics.
 RFJModel has the following characters.
 
-####1. It defines loading rules in the class declaration.
-RFJModel uses a macro, the JProperty, to declare loading rule. JProperty declares the loading property, the converted type and the mapping key in JSON.
-The following example to declare a property called "value_NSString". When JSON loading, RFJModel will get value called "map_value_NSString" in JSON, convert the value's type to NSString, and set "value_NSString" to the value.
+####1. Defining loading rules in the class declaration.
+RFJModel uses a macro, called JProperty, to declare loading rules. JProperty declares loading properties, converted types and mapping keys in JSON. The following example is to declare a property called "value_NSString". When JSON is loading, RFJModel gets the value from field "map_value_NSString" in JSON, converts the field type to NSString, and sets the value to the property "value_NSString".
 
 ```objective-c
 @interface ExampleJModel : RFJModel
@@ -27,8 +26,8 @@ ExampleJModel *model = [[ExampleJModel alloc] initWithJsonDict:json];
 NSLog(@"%@", model.value_NSString);
 ```
 
-####2. RFJModel supports JProperty、@property mixing declaration. It don't influence each other.
-The following example, only value_NSString will be loading, tag won't.
+####2. Supporting JProperty、@property mixing declaration without influencing each other.
+In the following example, only "value_NSString" will be loaded, not "tag".
 
 ```objective-c
 @interface ExampleJModel : RFJModel
@@ -36,12 +35,12 @@ JProperty(NSString *value_NSString, map_value_NSString);
 @property (nonatomic, assign) int64_t tag;
 @end
 ```
-####3. In order to reduce the crash due to the server returns error value, RFJModel has the following characters.
-* All [NSNull null] will be converted appropriately. It don't set JProperty to [NSNull null]. 
-* When value setting, the value of JSON will be converted basing on the type of property. For example, the Number in JSON will be converted into NSString in property.
-* Extra or missing field in a JSON dictionary is not an error.
+####3. Reducing crashes from errors returned by the servers
+* All [NSNull null] objects will be converted appropriately, and would not be set to JProperty. (Lacking protections to [NSNull null] is a main cause of the crashes.)
+* When setting the values, the value of JSON will be converted basing on the type of JProperty. For example, the Number in JSON will be converted into NSString in JProperty.
+* Extra or missing fields in a JSON dictionary would not be considered as an error.
 
-####4. RFJModel supports class inherit
+####4. Supporting class inherits
 ```objective-c
 @interface ExampleJModel : RFJModel
 JProperty(NSString *value_NSString, map_value_NSString);
@@ -68,7 +67,7 @@ ExampleJSubModel *model = [[ExampleJSubModel alloc] initWithJsonDict:json];
 NSLog(@"%@", model.value_NSString);	// "hello world"
 NSLog(@"%@", model.name);	// "Tom"
 ```
-####5. JProperty supports RFJModel subclass.
+####5. Supporting RFJModel subclasses in JProperty
 ```objective-c
 @interface ExampleJModel : RFJModel
 JProperty(NSString *value_NSString, map_value_NSString);
@@ -89,7 +88,7 @@ JProperty(NSString *name, name);
 },
 }
 ```
-####6. JProperty supports the array which contains the instances of RFJModel subclass.
+####6. Supporting arrays containing instances of RFJModel subclasses in JProperty
 ```objective-c
 @protocol ExampleJUserInfo
 @end
@@ -117,9 +116,9 @@ JProperty(NSString *name, name);
 ],
 }
 ```
-####7. JProperty supports NSMutableString、NSMutableArray、NSMutableDictionary. And the nested container will be converted into the mutable container.
+####7. Supporting NSMutableString, NSMutableArray and NSMutableDictionary in JProperty and Converting nested containers to mutable containers.
 
-####8. JProperty only supports the following type. If using other type, it will throw an exception.
+####8. Supporting given types in JProperty only, and an execption will be thrown if any other type is in use
 * BOOL
 * Number(NSInteger, short, long long, double, etc)
 * NSString
