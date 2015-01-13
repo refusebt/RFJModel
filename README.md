@@ -1,7 +1,7 @@
 RFJModel
 ========
 
-RFJModel is an easy-to-use JSON loading library. In comparing with other libraries, it's much easiler and less restricted to use. RFJModel has the following characteristics.
+RFJModel is an easy-to-use JSON modelling library. In comparing with other libraries, it's much easiler and less restricted to use. RFJModel has the following characteristics.
 
 ####1. Defining loading rules in the class declaration.
 RFJModel uses a macro, called JProperty, to declare loading rules. JProperty declares loading properties, converted types and mapping keys in JSON. The following example is to declare a property called "value_NSString". When JSON is loading, RFJModel gets the value from field "map_value_NSString" in JSON, converts the field type to NSString, and sets the value to the property "value_NSString".
