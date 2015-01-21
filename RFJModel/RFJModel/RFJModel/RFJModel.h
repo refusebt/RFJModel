@@ -91,6 +91,9 @@
 
 #define V2NumShort(value)	\
 	[NSNumber numberWithShort:(value)]
+	
+#define V2NumDouble(value)	\
+	[NSNumber numberWithDouble:(value)]
 
 @interface RFJModel : NSObject
 {
