@@ -600,7 +600,7 @@ static char* s_RFJModelPropertyTypeName[] =
 	
 	if (![NSString isEmpty:info.mapName] && ![NSString isEmpty:typeAttrib])
 	{
-		if ([typeAttrib hasPrefix:@"Tb"] || [typeAttrib hasPrefix:@"TB"])
+		if ([typeAttrib hasPrefix:@"Tb"] || [typeAttrib hasPrefix:@"TB"] || [typeAttrib hasPrefix:@"Tc"] || [typeAttrib hasPrefix:@"TC"])
 		{
 			info.type = RFJModelPropertyTypeBOOL;
 		}
