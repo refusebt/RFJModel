@@ -3,6 +3,8 @@ RFJModel
 
 RFJModel is an easy-to-use JSON modelling library. In comparing with other libraries, it's much easiler and less restricted to use. RFJModel has the following characteristics.
 
+####Note. Support ARC Only
+
 ####1. Defining loading rules in the class declaration.
 RFJModel uses a macro, called JProperty, to declare loading rules. JProperty declares loading properties, converted types and mapping keys in JSON. The following example is to declare a property called "value_NSString". When JSON is loading, RFJModel gets the value from field "map_value_NSString" in JSON, converts the field type to NSString, and sets the value to the property "value_NSString".
 
@@ -135,6 +137,8 @@ Finally, thanks to @sunpc for the translation.
 ========
 
 RFJModel是一个IOS类库，可以将JSON字典自动装填到OBJC对象。相比其他JSON装填库，RFJModel使用上更为简单，限制更少。
+
+####注意：仅支持ARC
 
 RFJModel有以下几个特点
 
