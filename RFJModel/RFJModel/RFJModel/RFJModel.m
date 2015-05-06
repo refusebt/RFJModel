@@ -108,6 +108,39 @@ static char* s_RFJModelPropertyTypeName[] =
 	return buffer;
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+	NSMutableDictionary *mapProperInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
+	for (NSString *key in mapProperInfos)
+	{
+		RFJModelPropertyInfo *pi = mapProperInfos[key];
+		id modelValue = [self valueForKey:pi.name];
+		[aCoder encodeObject:modelValue forKey:pi.name];
+	}
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	if (self=[super init])
+	{
+		NSMutableDictionary *mapProperInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
+		for (NSString *key in mapProperInfos)
+		{
+			RFJModelPropertyInfo *pi = mapProperInfos[key];
+			id modelValue = [aDecoder decodeObjectForKey:pi.name];
+			if (pi.type == RFJModelPropertyTypeMutableString
+				|| pi.type == RFJModelPropertyTypeMutableArray
+				|| pi.type == RFJModelPropertyTypeMutableModelArray
+				|| pi.type == RFJModelPropertyTypeMutableDictionary)
+			{
+				modelValue = [RFJModel deepMutableCopyWithJson:modelValue];
+			}
+			[self setValue:modelValue forKey:pi.name];
+		}
+	}
+	return (self);
+}
+
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent
 {
 	NSMutableString *indentString = [NSMutableString string];

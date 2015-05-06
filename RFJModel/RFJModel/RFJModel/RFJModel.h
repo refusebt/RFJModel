@@ -95,7 +95,7 @@
 #define V2NumDouble(value)	\
 	[NSNumber numberWithDouble:(value)]
 
-@interface RFJModel : NSObject
+@interface RFJModel : NSObject <NSCoding>
 {
 	
 }
