@@ -115,7 +115,10 @@ static char* s_RFJModelPropertyTypeName[] =
 	{
 		RFJModelPropertyInfo *pi = mapProperInfos[key];
 		id modelValue = [self valueForKey:pi.name];
-		[aCoder encodeObject:modelValue forKey:pi.name];
+		if (modelValue != nil)
+		{
+			[aCoder encodeObject:modelValue forKey:pi.name];
+		}
 	}
 }
 
@@ -135,7 +138,10 @@ static char* s_RFJModelPropertyTypeName[] =
 			{
 				modelValue = [RFJModel deepMutableCopyWithJson:modelValue];
 			}
-			[self setValue:modelValue forKey:pi.name];
+			if (modelValue != nil)
+			{
+				[self setValue:modelValue forKey:pi.name];
+			}
 		}
 	}
 	return (self);
