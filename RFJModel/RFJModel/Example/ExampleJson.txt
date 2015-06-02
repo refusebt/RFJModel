@@ -13,6 +13,7 @@
 			},
 	"bYes":"Yes",
 	"bTrue":true,
+	"bTrue2":"true",
 	"b0":0,
 	"b1":1,
 	"bNo":"no",

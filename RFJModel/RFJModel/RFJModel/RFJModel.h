@@ -95,6 +95,9 @@
 #define V2NumDouble(value)	\
 	[NSNumber numberWithDouble:(value)]
 
+#define V2Obj(value, class)	\
+	[RFJModel toValue:value ofClass:class]
+
 @interface RFJModel : NSObject <NSCoding>
 {
 	
@@ -115,6 +118,7 @@
 + (double)toDoubleWithJsonValue:(id)value;
 + (id)toArrayWithJsonValue:(id)value;
 + (id)toDictionaryWithJsonValue:(id)value;
++ (id)toValue:(id)value ofClass:(Class)cls;
 
 + (id)deepMutableCopyWithJson:(id)json;
 

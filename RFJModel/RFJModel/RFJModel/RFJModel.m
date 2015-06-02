@@ -522,6 +522,15 @@ static char* s_RFJModelPropertyTypeName[] =
 	return nil;
 }
 
++ (id)toValue:(id)value ofClass:(Class)cls
+{
+	if ([value isKindOfClass:cls])
+	{
+		return value;
+	}
+	return nil;
+}
+
 + (id)deepMutableCopyWithJson:(id)json
 {
 	if (json == nil || [json isKindOfClass:[NSNull class]])

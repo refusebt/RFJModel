@@ -70,6 +70,7 @@ JProperty(ExampleModelTestSub *errModel, errModel);
 JProperty(NSString *unuse, unuse);
 JProperty(BOOL bYes, bYes);
 JProperty(BOOL bTrue, bTrue);
+JProperty(BOOL bTrue2, bTrue2);
 JProperty(BOOL b0, b0);
 JProperty(BOOL b1, b1);
 JProperty(BOOL bNo, bNo);
