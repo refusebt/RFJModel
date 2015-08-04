@@ -108,43 +108,43 @@ static char* s_RFJModelPropertyTypeName[] =
 	return buffer;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-	NSMutableDictionary *mapProperInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
-	for (NSString *key in mapProperInfos)
-	{
-		RFJModelPropertyInfo *pi = mapProperInfos[key];
-		id modelValue = [self valueForKey:pi.name];
-		if (modelValue != nil)
-		{
-			[aCoder encodeObject:modelValue forKey:pi.name];
-		}
-	}
-}
-
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	if (self=[super init])
+	self = [super init];
+	if ([aDecoder isKindOfClass:[NSKeyedUnarchiver class]])
 	{
-		NSMutableDictionary *mapProperInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
-		for (NSString *key in mapProperInfos)
+		unsigned int count = 0;
+		objc_property_t *propertys = class_copyPropertyList([self class], &count);
+		for (int i = 0; i < count; i++)
 		{
-			RFJModelPropertyInfo *pi = mapProperInfos[key];
-			id modelValue = [aDecoder decodeObjectForKey:pi.name];
-			if (pi.type == RFJModelPropertyTypeMutableString
-				|| pi.type == RFJModelPropertyTypeMutableArray
-				|| pi.type == RFJModelPropertyTypeMutableModelArray
-				|| pi.type == RFJModelPropertyTypeMutableDictionary)
+			objc_property_t property = propertys[i];
+			NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
+			id value = [aDecoder decodeObjectForKey:propertyName];
+			if (value != nil)
 			{
-				modelValue = [RFJModel deepMutableCopyWithJson:modelValue];
-			}
-			if (modelValue != nil)
-			{
-				[self setValue:modelValue forKey:pi.name];
+				[self setValue:value forKey:propertyName];
 			}
 		}
+		free(propertys);
 	}
-	return (self);
+	return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+	unsigned int count = 0;
+	objc_property_t *propertys = class_copyPropertyList([self class], &count);
+	for (int i = 0; i < count; i++)
+	{
+		objc_property_t property = propertys[i];
+		NSString *propertyName = [NSString stringWithUTF8String: property_getName(property)];
+		id value = [self valueForKey:propertyName];
+		if (value != nil && [value conformsToProtocol:@protocol(NSCoding)])
+		{
+			[aCoder encodeObject:value forKey:propertyName];
+		}
+	}
+	free(propertys);
 }
 
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent
