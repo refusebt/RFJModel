@@ -132,7 +132,7 @@ JProperty(NSString *name, name);
 * NSArray (RFJModel's subclass)
 * NSMutableArray (RFJModel's subclass)
 
-####9. The JProperty implements NSCoding protocol. Support automatic serialization.
+####9. The RFJModel implements NSCoding protocol. Support automatic serialization.
 
 Finally, thanks to @sunpc for the translation.
 
@@ -273,4 +273,4 @@ JProperty(NSString *name, name);
 * NSArray (RFJModel's subclass)
 * NSMutableArray (RFJModel's subclass)
 
-####9. JProperty实现了NSCoding协议。支持自动序列化。
+####9. RFJModel实现了NSCoding协议。支持自动序列化。
