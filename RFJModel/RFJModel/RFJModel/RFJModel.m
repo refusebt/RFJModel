@@ -58,12 +58,14 @@ static char* s_RFJModelPropertyTypeName[] =
 @property (nonatomic, assign) Class modelClass;
 
 + (NSMutableDictionary *)mapPropertyInfosWithClass:(Class)cls;
++ (NSMutableArray *)propertyNamesWithClass:(Class)cls;
 + (RFJModelPropertyInfo *)propertyInfoWithProperty:(objc_property_t *)property;
 
 @end
 
 @interface RFJModel ()
 + (NSMutableDictionary *)modelInfos;
++ (NSMutableDictionary *)propertyInfos;
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent;
 @end
 
@@ -75,9 +77,13 @@ static char* s_RFJModelPropertyTypeName[] =
 {
 	if ([self class] != [RFJModel class])
 	{
-		NSMutableDictionary *mapPropertyInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
 		const char *className = object_getClassName([self class]);
+		
+		NSMutableDictionary *mapPropertyInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
 		[[RFJModel modelInfos] setObject:mapPropertyInfos forKey:[NSValue valueWithPointer:className]];
+		
+		NSArray *propertyNames = [RFJModelPropertyInfo propertyNamesWithClass:[self class]];
+		[[RFJModel propertyInfos] setObject:propertyNames forKey:[NSValue valueWithPointer:className]];
 	}
 }
 
@@ -113,38 +119,32 @@ static char* s_RFJModelPropertyTypeName[] =
 	self = [super init];
 	if ([aDecoder isKindOfClass:[NSKeyedUnarchiver class]])
 	{
-		unsigned int count = 0;
-		objc_property_t *propertys = class_copyPropertyList([self class], &count);
-		for (int i = 0; i < count; i++)
+		const char *className = object_getClassName([self class]);
+		NSArray *propertyNames = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+		for (NSString *propertyName in propertyNames)
 		{
-			objc_property_t property = propertys[i];
-			NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
 			id value = [aDecoder decodeObjectForKey:propertyName];
 			if (value != nil)
 			{
 				[self setValue:value forKey:propertyName];
 			}
 		}
-		free(propertys);
 	}
 	return self;
 }
 
--(void)encodeWithCoder:(NSCoder *)aCoder
+- (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	unsigned int count = 0;
-	objc_property_t *propertys = class_copyPropertyList([self class], &count);
-	for (int i = 0; i < count; i++)
+	const char *className = object_getClassName([self class]);
+	NSArray *propertyNames = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+	for (NSString *propertyName in propertyNames)
 	{
-		objc_property_t property = propertys[i];
-		NSString *propertyName = [NSString stringWithUTF8String: property_getName(property)];
 		id value = [self valueForKey:propertyName];
 		if (value != nil && [value conformsToProtocol:@protocol(NSCoding)])
 		{
 			[aCoder encodeObject:value forKey:propertyName];
 		}
 	}
-	free(propertys);
 }
 
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent
@@ -584,6 +584,18 @@ static char* s_RFJModelPropertyTypeName[] =
 	return s_instance;
 }
 
++ (NSMutableDictionary *)propertyInfos
+{
+	static NSMutableDictionary *s_instance = nil;
+	
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		s_instance = [[NSMutableDictionary alloc] init];
+	});
+	
+	return s_instance;
+}
+
 @end
 
 #pragma mark - RFJModelPropertyInfo
@@ -617,6 +629,32 @@ static char* s_RFJModelPropertyTypeName[] =
 	}
 	
 	return mapProperInfos;
+}
+
++ (NSMutableArray *)propertyNamesWithClass:(Class)cls
+{
+	NSMutableArray *mapPropertyNames = [NSMutableArray array];
+	
+	if ([cls isSubclassOfClass:[RFJModel class]])
+	{
+		Class current = cls;
+		while (current != [RFJModel class])
+		{
+			unsigned count = 0;
+			objc_property_t *properties = class_copyPropertyList(current, &count);
+			for (unsigned i = 0; i < count; i++)
+			{
+				objc_property_t property = properties[i];
+				NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
+				[mapPropertyNames addObject:propertyName];
+			}
+			free(properties);
+			
+			current = [current superclass];
+		}
+	}
+	
+	return mapPropertyNames;
 }
 
 // TODO: NSScanner
