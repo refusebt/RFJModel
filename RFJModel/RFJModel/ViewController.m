@@ -63,6 +63,15 @@
 	self.tvResult.text = [model description];
 	
 	NSLog(@"\ninput:\n%@\n\noutput:\n%@", self.tvJson.text, self.tvResult.text);
+	
+//	// NSObject属性排除测试
+//	{
+//		ExampleProtocolModel *oldM = [[ExampleProtocolModel alloc] init];
+//		oldM.name = [NSString stringWithFormat:@"test"];
+//		NSData *data = [RFJModel toDataWithModel:oldM];
+//		ExampleProtocolModel *newM = [RFJModel toModelWithData:data class:[ExampleProtocolModel class]];
+//		NSLog(@"%@", newM);
+//	}
 }
 
 @end

@@ -57,6 +57,7 @@ static char* s_RFJModelPropertyTypeName[] =
 @property (nonatomic, assign) const char *modelClassName;
 @property (nonatomic, assign) Class modelClass;
 
++ (NSMutableDictionary *)mapNSObjectProperties;
 + (NSMutableDictionary *)mapPropertyInfosWithClass:(Class)cls;
 + (NSMutableArray *)propertyNamesWithClass:(Class)cls;
 + (RFJModelPropertyInfo *)propertyInfoWithProperty:(objc_property_t *)property;
@@ -120,7 +121,7 @@ static char* s_RFJModelPropertyTypeName[] =
 	if ([aDecoder isKindOfClass:[NSKeyedUnarchiver class]])
 	{
 		const char *className = object_getClassName([self class]);
-		NSArray *propertyNames = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+		NSArray *propertyNames = [[RFJModel propertyInfos] objectForKey:[NSValue valueWithPointer:className]];
 		for (NSString *propertyName in propertyNames)
 		{
 			id value = [aDecoder decodeObjectForKey:propertyName];
@@ -136,7 +137,7 @@ static char* s_RFJModelPropertyTypeName[] =
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
 	const char *className = object_getClassName([self class]);
-	NSArray *propertyNames = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+	NSArray *propertyNames = [[RFJModel propertyInfos] objectForKey:[NSValue valueWithPointer:className]];
 	for (NSString *propertyName in propertyNames)
 	{
 		id value = [self valueForKey:propertyName];
@@ -149,6 +150,8 @@ static char* s_RFJModelPropertyTypeName[] =
 
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent
 {
+	NSMutableDictionary *mapNSObjectProperties = [RFJModelPropertyInfo mapNSObjectProperties];
+	
 	NSMutableString *indentString = [NSMutableString string];
 	for (NSInteger i = 0; i < indent; i++)
 	{
@@ -204,6 +207,8 @@ static char* s_RFJModelPropertyTypeName[] =
 			{
 				// no JProperty
 				NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+				if ([mapNSObjectProperties valueForKey:name] != nil)
+					continue;
 				id value = [self valueForKey:name];
 				NSString *valueString = [value description];
 				valueString = [valueString stringByReplacingOccurrencesOfString:@"\n" withString:replaceString];
@@ -572,6 +577,36 @@ static char* s_RFJModelPropertyTypeName[] =
 	return json;
 }
 
++ (NSData *)toDataWithModel:(RFJModel *)model
+{
+	@autoreleasepool
+	{
+		NSMutableData* saveData = [[NSMutableData alloc] init];
+		NSKeyedArchiver* archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:saveData];
+		[archiver encodeRootObject:model];
+		[archiver finishEncoding];
+		return saveData;
+	}
+}
+
++ (id)toModelWithData:(NSData *)data class:(Class)cls
+{
+	@autoreleasepool
+	{
+		if (data != nil && data.length > 0)
+		{
+			NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+			id object = [unArchiver decodeObject];
+			if (cls == nil)
+				return object;
+			
+			if ([object isKindOfClass:cls])
+				return object;
+		}
+		return nil;
+	}
+}
+
 + (NSMutableDictionary *)modelInfos
 {
 	static NSMutableDictionary *s_instance = nil;
@@ -601,6 +636,26 @@ static char* s_RFJModelPropertyTypeName[] =
 #pragma mark - RFJModelPropertyInfo
 
 @implementation RFJModelPropertyInfo
+
++ (NSMutableDictionary *)mapNSObjectProperties
+{
+	static NSMutableDictionary *s_map = nil;
+	if (s_map == nil)
+	{
+		s_map = [NSMutableDictionary dictionary];
+		Protocol *protocol = objc_getProtocol("NSObject");
+		unsigned count = 0;
+		objc_property_t *properties = protocol_copyPropertyList(protocol, &count);
+		for (unsigned i = 0; i < count; i++)
+		{
+			objc_property_t property = properties[i];
+			NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
+			[s_map setObject:propertyName forKey:propertyName];
+		}
+		free(properties);
+	}
+	return s_map;
+}
 
 + (NSMutableDictionary *)mapPropertyInfosWithClass:(Class)cls
 {
@@ -633,6 +688,7 @@ static char* s_RFJModelPropertyTypeName[] =
 
 + (NSMutableArray *)propertyNamesWithClass:(Class)cls
 {
+	NSMutableDictionary *mapNSObjectProperties = [RFJModelPropertyInfo mapNSObjectProperties];
 	NSMutableArray *mapPropertyNames = [NSMutableArray array];
 	
 	if ([cls isSubclassOfClass:[RFJModel class]])
@@ -646,7 +702,8 @@ static char* s_RFJModelPropertyTypeName[] =
 			{
 				objc_property_t property = properties[i];
 				NSString *propertyName = [NSString stringWithUTF8String:property_getName(property)];
-				[mapPropertyNames addObject:propertyName];
+				if ([mapNSObjectProperties objectForKey:propertyName] == nil)
+					[mapPropertyNames addObject:propertyName];
 			}
 			free(properties);
 			

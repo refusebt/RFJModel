@@ -22,3 +22,6 @@
 
 @implementation GrandsonModel
 @end
+
+@implementation ExampleProtocolModel
+@end

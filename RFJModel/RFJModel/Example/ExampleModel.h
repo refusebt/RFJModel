@@ -89,3 +89,11 @@ JProperty(GrandsonModel *gm, GrandsonModel);
 JProperty(NSString *name, name);
 @property (nonatomic, assign) int64_t tag;
 @end
+
+@protocol ExampleProtocol <NSObject>
+
+@end
+
+@interface ExampleProtocolModel : RFJModel <ExampleProtocol>
+@property (nonatomic, strong) NSString *name;
+@end

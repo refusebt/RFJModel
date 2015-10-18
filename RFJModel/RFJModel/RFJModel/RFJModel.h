@@ -122,6 +122,9 @@
 
 + (id)deepMutableCopyWithJson:(id)json;
 
++ (NSData *)toDataWithModel:(RFJModel *)model;
++ (id)toModelWithData:(NSData *)data class:(Class)cls;
+
 @end
 
 #pragma mark NSString (RFJModel)
