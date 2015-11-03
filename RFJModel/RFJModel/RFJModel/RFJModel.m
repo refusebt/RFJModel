@@ -653,6 +653,15 @@ static char* s_RFJModelPropertyTypeName[] =
 			[s_map setObject:propertyName forKey:propertyName];
 		}
 		free(properties);
+		
+		// IOS7及以前应对
+		if (s_map.count == 0)
+		{
+			[s_map setObject:@"hash" forKey:@"hash"];
+			[s_map setObject:@"superclass" forKey:@"superclass"];
+			[s_map setObject:@"description" forKey:@"description"];
+			[s_map setObject:@"debugDescription" forKey:@"debugDescription"];
+		}
 	}
 	return s_map;
 }
