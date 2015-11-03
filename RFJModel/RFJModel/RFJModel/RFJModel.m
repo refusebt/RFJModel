@@ -70,21 +70,36 @@ static char* s_RFJModelPropertyTypeName[] =
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent;
 @end
 
+static NSRecursiveLock *s_RFJModelLock = nil;
+
 #pragma mark - RFJModel
 
 @implementation RFJModel
+
++ (void)load
+{
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		s_RFJModelLock = [[NSRecursiveLock alloc] init];
+		s_RFJModelLock.name = @"RFJModelLock";
+	});
+}
 
 + (void)initialize
 {
 	if ([self class] != [RFJModel class])
 	{
-		const char *className = object_getClassName([self class]);
-		
-		NSMutableDictionary *mapPropertyInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
-		[[RFJModel modelInfos] setObject:mapPropertyInfos forKey:[NSValue valueWithPointer:className]];
-		
-		NSArray *propertyNames = [RFJModelPropertyInfo propertyNamesWithClass:[self class]];
-		[[RFJModel propertyInfos] setObject:propertyNames forKey:[NSValue valueWithPointer:className]];
+		[s_RFJModelLock lock];
+		{
+			const char *className = object_getClassName([self class]);
+			
+			NSMutableDictionary *mapPropertyInfos = [RFJModelPropertyInfo mapPropertyInfosWithClass:[self class]];
+			[[RFJModel modelInfos] setObject:mapPropertyInfos forKey:[NSValue valueWithPointer:className]];
+			
+			NSArray *propertyNames = [RFJModelPropertyInfo propertyNamesWithClass:[self class]];
+			[[RFJModel propertyInfos] setObject:propertyNames forKey:[NSValue valueWithPointer:className]];
+		}
+		[s_RFJModelLock unlock];
 	}
 }
 
@@ -121,7 +136,14 @@ static char* s_RFJModelPropertyTypeName[] =
 	if ([aDecoder isKindOfClass:[NSKeyedUnarchiver class]])
 	{
 		const char *className = object_getClassName([self class]);
-		NSArray *propertyNames = [[RFJModel propertyInfos] objectForKey:[NSValue valueWithPointer:className]];
+		NSArray *propertyNames = nil;
+		
+		[s_RFJModelLock lock];
+		{
+			propertyNames = [[RFJModel propertyInfos] objectForKey:[NSValue valueWithPointer:className]];
+		}
+		[s_RFJModelLock unlock];
+		
 		for (NSString *propertyName in propertyNames)
 		{
 			id value = [aDecoder decodeObjectForKey:propertyName];
@@ -137,7 +159,14 @@ static char* s_RFJModelPropertyTypeName[] =
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
 	const char *className = object_getClassName([self class]);
-	NSArray *propertyNames = [[RFJModel propertyInfos] objectForKey:[NSValue valueWithPointer:className]];
+	NSArray *propertyNames = nil;
+	
+	[s_RFJModelLock lock];
+	{
+		propertyNames = [[RFJModel propertyInfos] objectForKey:[NSValue valueWithPointer:className]];
+	}
+	[s_RFJModelLock unlock];
+	
 	for (NSString *propertyName in propertyNames)
 	{
 		id value = [self valueForKey:propertyName];
@@ -224,7 +253,14 @@ static char* s_RFJModelPropertyTypeName[] =
 - (void)fillWithJsonDict:(NSDictionary *)jsonDict
 {
 	const char *className = object_getClassName([self class]);
-	NSDictionary *mapPropertyInfos = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+	NSDictionary *mapPropertyInfos = nil;
+	
+	[s_RFJModelLock lock];
+	{
+		mapPropertyInfos = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+	}
+	[s_RFJModelLock unlock];
+	
 	for (NSString *key in jsonDict)
 	{
 		RFJModelPropertyInfo *info = mapPropertyInfos[key];
