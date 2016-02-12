@@ -378,6 +378,89 @@ static NSRecursiveLock *s_RFJModelLock = nil;
 	}
 }
 
+- (NSMutableDictionary *)toMutableDictionary
+{
+	NSMutableDictionary *container = [NSMutableDictionary dictionary];
+	const char *className = object_getClassName([self class]);
+	NSDictionary *mapPropertyInfos = nil;
+	
+	[s_RFJModelLock lock];
+	{
+		mapPropertyInfos = [[RFJModel modelInfos] objectForKey:[NSValue valueWithPointer:className]];
+	}
+	[s_RFJModelLock unlock];
+	
+	for (NSString *key in mapPropertyInfos)
+	{
+		RFJModelPropertyInfo *info = mapPropertyInfos[key];
+		id value = [self valueForKey:info.name];
+		if (value != nil)
+		{
+			switch (info.type)
+			{
+				case RFJModelPropertyTypeBOOL:
+				case RFJModelPropertyTypeInt16:
+				case RFJModelPropertyTypeInt32:
+				case RFJModelPropertyTypeInt64:
+				case RFJModelPropertyTypeFloat:
+				case RFJModelPropertyTypeDouble:
+				case RFJModelPropertyTypeString:
+				case RFJModelPropertyTypeMutableString:
+				case RFJModelPropertyTypeArray:
+				case RFJModelPropertyTypeMutableArray:
+				case RFJModelPropertyTypeDictionary:
+				case RFJModelPropertyTypeMutableDictionary:
+					{
+						[container setObject:value forKey:info.mapName];
+					}
+					break;
+				case RFJModelPropertyTypeModelArray:
+				case RFJModelPropertyTypeMutableModelArray:
+					{
+						NSMutableArray *newArray = [NSMutableArray array];
+						NSArray *array = value;
+						for (NSInteger i = 0; i < array.count; i++)
+						{
+							id arrayValue = array[i];
+							if ([arrayValue isKindOfClass:[RFJModel class]])
+							{
+								RFJModel *arrayModel = arrayValue;
+								NSMutableDictionary *dict = [arrayModel toMutableDictionary];
+								if (dict != nil)
+								{
+									[newArray addObject:dict];
+								}
+							}
+						}
+						[container setObject:newArray forKey:info.mapName];
+					}
+					break;
+				case RFJModelPropertyTypeModel:
+					{
+						RFJModel *arrayModel = value;
+						NSMutableDictionary *dict = [arrayModel toMutableDictionary];
+						if (dict != nil)
+						{
+							[container setObject:dict forKey:info.mapName];
+						}
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
+	
+	return container;
+}
+
+- (NSString *)toJsonString
+{
+	NSMutableDictionary *dict = [self toMutableDictionary];
+	NSData *buffer = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+	return [[NSString alloc] initWithData:buffer encoding:NSUTF8StringEncoding];
+}
+
 + (NSString *)toStringWithJsonValue:(id)value
 {
 	if (value == nil || value == [NSNull null])

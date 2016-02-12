@@ -107,6 +107,9 @@
 
 - (void)fillWithJsonDict:(NSDictionary *)jsonDict;
 
+- (NSMutableDictionary *)toMutableDictionary;					// 仅JP属性可转换，fill的逆操作，空值不写入
+- (NSString *)toJsonString;										// 仅JP属性可转换，fill的逆操作，空值不写入
+
 + (NSString *)toStringWithJsonValue:(id)value;
 + (NSInteger)toIntegerWithJsonValue:(id)value;
 + (BOOL)toBoolWithJsonValue:(id)value;
