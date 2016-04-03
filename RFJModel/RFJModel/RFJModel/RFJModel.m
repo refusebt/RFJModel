@@ -994,6 +994,12 @@ static NSRecursiveLock *s_RFJModelLock = nil;
 	{
 		return @"";
 	}
+	
+	if ([value isKindOfClass:[NSNumber class]])
+	{
+		return  [(NSNumber *)value stringValue];
+	}
+	
 	return value;
 }
 
