@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3992C1F01F04D4D900433314 /* ExampleCustomStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3992C1EF1F04D4D900433314 /* ExampleCustomStorageModel.m */; };
 		78DA97531A53951B006B0597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97521A53951B006B0597 /* main.m */; };
 		78DA97561A53951B006B0597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97551A53951B006B0597 /* AppDelegate.m */; };
 		78DA97591A53951B006B0597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97581A53951B006B0597 /* ViewController.m */; };
@@ -18,7 +19,6 @@
 		78DA977F1A539581006B0597 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97791A539581006B0597 /* ExampleModel.m */; };
 		78DA97801A539581006B0597 /* ExampleType.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78DA977A1A539581006B0597 /* ExampleType.txt */; };
 		78DA97811A539581006B0597 /* RFJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA977D1A539581006B0597 /* RFJModel.m */; };
-		78DC80251A58DCB100D2019F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 78DC80241A58DCB100D2019F /* README.md */; };
 		78DC80271A590C5400D2019F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78DC80261A590C5400D2019F /* LICENSE */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3992C1EE1F04D4D900433314 /* ExampleCustomStorageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleCustomStorageModel.h; sourceTree = "<group>"; };
+		3992C1EF1F04D4D900433314 /* ExampleCustomStorageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleCustomStorageModel.m; sourceTree = "<group>"; };
 		78DA974D1A53951B006B0597 /* RFJModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFJModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DA97511A53951B006B0597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DA97521A53951B006B0597 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -144,6 +146,8 @@
 				78DA97781A539581006B0597 /* ExampleModel.h */,
 				78DA97791A539581006B0597 /* ExampleModel.m */,
 				78DA977A1A539581006B0597 /* ExampleType.txt */,
+				3992C1EE1F04D4D900433314 /* ExampleCustomStorageModel.h */,
+				3992C1EF1F04D4D900433314 /* ExampleCustomStorageModel.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -201,11 +205,12 @@
 		78DA97451A53951B006B0597 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = TechAtk;
 				TargetAttributes = {
 					78DA974C1A53951B006B0597 = {
 						CreatedOnToolsVersion = 6.1;
+						ProvisioningStyle = Manual;
 					};
 					78DA97651A53951B006B0597 = {
 						CreatedOnToolsVersion = 6.1;
@@ -260,10 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DC80251A58DCB100D2019F /* README.md in Sources */,
 				78DA97591A53951B006B0597 /* ViewController.m in Sources */,
 				78DA97561A53951B006B0597 /* AppDelegate.m in Sources */,
 				78DA97811A539581006B0597 /* RFJModel.m in Sources */,
+				3992C1F01F04D4D900433314 /* ExampleCustomStorageModel.m in Sources */,
 				78DA977F1A539581006B0597 /* ExampleModel.m in Sources */,
 				78DA97531A53951B006B0597 /* main.m in Sources */,
 			);
@@ -320,15 +325,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -362,8 +371,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -371,6 +382,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -389,10 +401,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RFJModel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -400,10 +415,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RFJModel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -421,6 +439,7 @@
 				);
 				INFOPLIST_FILE = RFJModelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RFJModel.app/RFJModel";
 			};
@@ -436,6 +455,7 @@
 				);
 				INFOPLIST_FILE = RFJModelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RFJModel.app/RFJModel";
 			};
