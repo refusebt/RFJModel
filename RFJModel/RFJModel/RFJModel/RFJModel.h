@@ -91,12 +91,17 @@
 
 #define V2NumShort(value)	\
 	[NSNumber numberWithShort:(value)]
-	
+
+#define V2NumFloat(value)	\
+	[NSNumber numberWithFloat:(value)]
+
 #define V2NumDouble(value)	\
 	[NSNumber numberWithDouble:(value)]
 
 #define V2Obj(value, class)	\
 	[RFJModel toValue:value ofClass:class]
+
+extern NSString * const kRFJModelVersionTag;
 
 @interface RFJModel : NSObject <NSCoding>
 {
@@ -109,6 +114,13 @@
 
 - (NSMutableDictionary *)toMutableDictionary;					// 仅JP属性可转换，fill的逆操作，空值不写入
 - (NSString *)toJsonString;										// 仅JP属性可转换，fill的逆操作，空值不写入
+
+/**
+ *  模型版本号，当模型发生需要适配的变更时，可以修改返回值，序列化和反序列化可以依据该值作区分
+ *  e.g. 在initWithCoder:中[aDecoder decodeObjectForKey:kRFJModelVersionTag] 与 self.rfJModelVersion 对比，就可以区分对待，做数据变迁
+ *  @return 默认0
+ */
++ (NSUInteger)rfJModelVersion;
 
 + (NSString *)toStringWithJsonValue:(id)value;
 + (NSInteger)toIntegerWithJsonValue:(id)value;

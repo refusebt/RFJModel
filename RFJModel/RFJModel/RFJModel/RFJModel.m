@@ -9,6 +9,8 @@
 #import "RFJModel.h"
 #import <objc/runtime.h>
 
+NSString * const kRFJModelVersionTag = @"rf_JModelVersion";
+
 typedef NS_ENUM(NSUInteger, RFJModelPropertyType)
 {
 	RFJModelPropertyTypeNone = 0,
@@ -65,9 +67,11 @@ static char* s_RFJModelPropertyTypeName[] =
 @end
 
 @interface RFJModel ()
+
 + (NSMutableDictionary *)modelInfos;
 + (NSMutableDictionary *)propertyInfos;
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent;
+
 @end
 
 static NSRecursiveLock *s_RFJModelLock = nil;
@@ -175,6 +179,8 @@ static NSRecursiveLock *s_RFJModelLock = nil;
 			[aCoder encodeObject:value forKey:propertyName];
 		}
 	}
+    //encode模型版本
+    [aCoder encodeObject:[NSNumber numberWithUnsignedInteger:[[self class] rfJModelVersion]] forKey:kRFJModelVersionTag];
 }
 
 - (void)descriptionWithBuffer:(NSMutableString *)buffer indent:(NSInteger)indent
@@ -724,6 +730,11 @@ static NSRecursiveLock *s_RFJModelLock = nil;
 		}
 		return nil;
 	}
+}
+
++ (NSUInteger)rfJModelVersion
+{
+    return 0;
 }
 
 + (NSMutableDictionary *)modelInfos
