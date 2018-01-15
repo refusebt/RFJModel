@@ -1,107 +1,15 @@
 //
 //  RFJModel.h
-//  RF
+//  RFJModel
 //
 //  Created by gouzhehua on 14-12-5.
 //  Copyright (c) 2014年 GZH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+RFJModel.h"
 
-#define JProperty(Property, MapName)	\
-	@property (nonatomic, setter=_rfjm_##MapName:) Property
-
-#define IS_EMPTY_STR(value)	\
-	[NSString isEmpty:value]
-
-#define J2Str(value)	\
-	[RFJModel toStringWithJsonValue:value]
-
-#define J2Integer(value)	\
-	[RFJModel toIntegerWithJsonValue:value]
-
-#define J2Bool(value)	\
-	[RFJModel toBoolWithJsonValue:value]
-
-#define J2Int16(value)	\
-	[RFJModel toInt16WithJsonValue:value]
-
-#define J2Int32(value)	\
-	[RFJModel toInt32WithJsonValue:value]
-
-#define J2Int64(value)	\
-	[RFJModel toInt64WithJsonValue:value]
-
-#define J2Short(value)	\
-	[RFJModel toShortWithJsonValue:value]
-
-#define J2Float(value)	\
-	[RFJModel toFloatWithJsonValue:value]
-
-#define J2Double(value)	\
-	[RFJModel toDoubleWithJsonValue:value]
-
-#define J2Array(value)	\
-	[RFJModel toArrayWithJsonValue:value]
-
-#define J2Dict(value)	\
-	[RFJModel toDictionaryWithJsonValue:value]
-
-#define J2NumInteger(value)	\
-	[NSNumber numberWithInteger:[RFJModel toIntegerWithJsonValue:value]]
-
-#define J2NumBool(value)	\
-	[NSNumber numberWithBool:[RFJModel toBoolWithJsonValue:value]]
-
-#define J2NumInt16(value)	\
-	[NSNumber numberWithShort:[RFJModel toInt16WithJsonValue:value]]
-
-#define J2NumInt32(value)	\
-	[NSNumber numberWithInt:[RFJModel toInt32WithJsonValue:value]]
-
-#define J2NumInt64(value)	\
-	[NSNumber numberWithLongLong:[RFJModel toInt64WithJsonValue:value]]
-
-#define J2NumShort(value)	\
-	[NSNumber numberWithShort:[RFJModel toShortWithJsonValue:value]]
-
-#define J2NumFloat(value)	\
-	[NSNumber numberWithFloat:[RFJModel toFloatWithJsonValue:value]]
-
-#define J2NumDouble(value)	\
-	[NSNumber numberWithDouble:[RFJModel toDoubleWithJsonValue:value]]
-
-#define V2Str(value)	\
-	[NSString ifNilToStr:(value)]
-
-#define V2NumInteger(value)	\
-	[NSNumber numberWithInteger:(value)]
-
-#define V2NumBool(value)	\
-	[NSNumber numberWithBool:(value)]
-
-#define V2NumInt16(value)	\
-	[NSNumber numberWithShort:(value)]
-
-#define V2NumInt32(value)	\
-	[NSNumber numberWithInt:(value)]
-
-#define V2NumInt64(value)	\
-	[NSNumber numberWithLongLong:(value)]
-
-#define V2NumShort(value)	\
-	[NSNumber numberWithShort:(value)]
-
-#define V2NumFloat(value)	\
-	[NSNumber numberWithFloat:(value)]
-
-#define V2NumDouble(value)	\
-	[NSNumber numberWithDouble:(value)]
-
-#define V2Obj(value, class)	\
-	[RFJModel toValue:value ofClass:class]
-
-extern NSString * const kRFJModelVersionTag;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface RFJModel : NSObject <NSCoding>
 {
@@ -110,49 +18,6 @@ extern NSString * const kRFJModelVersionTag;
 
 - (id)initWithJsonDict:(NSDictionary *)jsonDict;
 
-- (void)fillWithJsonDict:(NSDictionary *)jsonDict;
-
-- (NSMutableDictionary *)toMutableDictionary;					// 仅JP属性可转换，fill的逆操作，空值不写入
-- (NSString *)toJsonString;										// 仅JP属性可转换，fill的逆操作，空值不写入
-
-/**
- *  模型版本号，当模型发生需要适配的变更时，可以修改返回值，序列化和反序列化可以依据该值作区分
- *  e.g. 在initWithCoder:中[aDecoder decodeObjectForKey:kRFJModelVersionTag] 与 self.rfJModelVersion 对比，就可以区分对待，做数据变迁
- *  @return 默认0
- */
-+ (NSUInteger)rfJModelVersion;
-
-+ (NSString *)toStringWithJsonValue:(id)value;
-+ (NSInteger)toIntegerWithJsonValue:(id)value;
-+ (BOOL)toBoolWithJsonValue:(id)value;
-+ (int16_t)toInt16WithJsonValue:(id)value;
-+ (int32_t)toInt32WithJsonValue:(id)value;
-+ (int64_t)toInt64WithJsonValue:(id)value;
-+ (short)toShortWithJsonValue:(id)value;
-+ (float)toFloatWithJsonValue:(id)value;
-+ (double)toDoubleWithJsonValue:(id)value;
-+ (id)toArrayWithJsonValue:(id)value;
-+ (id)toDictionaryWithJsonValue:(id)value;
-+ (id)toValue:(id)value ofClass:(Class)cls;
-
-+ (id)deepMutableCopyWithJson:(id)json;
-
-+ (NSData *)toDataWithModel:(RFJModel *)model;
-+ (id)toModelWithData:(NSData *)data class:(Class)cls;
-
 @end
 
-#pragma mark NSString (RFJModel)
-
-@interface NSString (RFJModel)
-
-+ (BOOL)isEmpty:(NSString *)value;
-+ (NSString *)ifNilToStr:(NSString *)value;
-
-+ (NSString *)stringWithInteger:(NSInteger)value;
-+ (NSString *)stringWithLong:(long)value;
-+ (NSString *)stringWithLongLong:(int64_t)value;
-+ (NSString *)stringWithFloat:(float)value;
-+ (NSString *)stringWithDouble:(double)value;
-
-@end
+NS_ASSUME_NONNULL_END

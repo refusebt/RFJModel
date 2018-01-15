@@ -1,0 +1,51 @@
+
+input:
+@interface ExampleModelTestType : RFJModel
+JProperty(NSInteger value_NSInteger, map_value_NSInteger);
+JProperty(NSUInteger value_NSUInteger, map_value_NSUInteger);
+JProperty(short value_short, map_value_short);
+JProperty(unsigned short value_ushort, map_value_ushort);
+JProperty(int value_int, map_value_int);
+JProperty(unsigned int value_uint, map_value_uint);
+JProperty(long value_long, map_value_long);
+JProperty(unsigned long value_long_u, map_value_long_u);
+JProperty(long long value_long_long, map_value_long_long);
+JProperty(unsigned long long value_long_long_u, map_value_long_long_u);
+JProperty(int32_t value_int32, map_value_int32);
+JProperty(uint32_t value_uint32, map_value_uint32);
+JProperty(int16_t value_int16, map_value_int16);
+JProperty(uint16_t value_uint16, map_value_uint16);
+JProperty(int64_t value_int64, map_value_int64);
+JProperty(uint64_t value_uint64, map_value_uint64);
+JProperty(NSString *value_NSString, map_value_NSString);
+JProperty(NSArray *value_NSArray, map_value_NSArray);
+JProperty(NSDictionary *value_NSDictionary, map_value_NSDictionary);
+JProperty(BOOL value_Bool, map_value_Bool);
+JProperty(ExampleModelTestType *value_Model, map_model);
+JProperty(NSArray<ExampleModelTestSub> *value_models, map_models);
+@end
+
+output:
+
+JP name:value_NSInteger type:RFJModelPropertyTypeInt64 map:map_value_NSInteger value:0
+JP name:value_NSUInteger type:RFJModelPropertyTypeInt64 map:map_value_NSUInteger value:0
+JP name:value_short type:RFJModelPropertyTypeInt16 map:map_value_short value:0
+JP name:value_ushort type:RFJModelPropertyTypeInt16 map:map_value_ushort value:0
+JP name:value_int type:RFJModelPropertyTypeInt32 map:map_value_int value:0
+JP name:value_uint type:RFJModelPropertyTypeInt32 map:map_value_uint value:0
+JP name:value_long type:RFJModelPropertyTypeInt64 map:map_value_long value:0
+JP name:value_long_u type:RFJModelPropertyTypeInt64 map:map_value_long_u value:0
+JP name:value_long_long type:RFJModelPropertyTypeInt64 map:map_value_long_long value:0
+JP name:value_long_long_u type:RFJModelPropertyTypeInt64 map:map_value_long_long_u value:0
+JP name:value_int32 type:RFJModelPropertyTypeInt32 map:map_value_int32 value:0
+JP name:value_uint32 type:RFJModelPropertyTypeInt32 map:map_value_uint32 value:0
+JP name:value_int16 type:RFJModelPropertyTypeInt16 map:map_value_int16 value:0
+JP name:value_uint16 type:RFJModelPropertyTypeInt16 map:map_value_uint16 value:0
+JP name:value_int64 type:RFJModelPropertyTypeInt64 map:map_value_int64 value:0
+JP name:value_uint64 type:RFJModelPropertyTypeInt64 map:map_value_uint64 value:0
+JP name:value_NSString type:RFJModelPropertyTypeString map:map_value_NSString value:(null)
+JP name:value_NSArray type:RFJModelPropertyTypeArray map:map_value_NSArray value:(null)
+JP name:value_NSDictionary type:RFJModelPropertyTypeDictionary map:map_value_NSDictionary value:(null)
+JP name:value_Bool type:RFJModelPropertyTypeBOOL map:map_value_Bool value:0
+JP name:value_Model type:RFJModelPropertyTypeModel map:map_model value:
+JP name:value_models type:RFJModelPropertyTypeModelArray map:map_models value:

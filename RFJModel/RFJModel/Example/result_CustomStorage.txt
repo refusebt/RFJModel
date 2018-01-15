@@ -1,0 +1,24 @@
+
+input:
+{
+	"jpValueJsonKey":"XiaoMing",
+	"jpStorageValueJsonKey":"XiaoGang",
+	"jpStorageCharValueJsonKey1": 120003,
+	"jpStorageCharValueJsonKey2": "120003",
+}
+
+
+output:
+
+JP name:jpValue type:RFJModelPropertyTypeString map:jpValueJsonKey value:XiaoMing
+JP name:jpStorageValue type:RFJModelPropertyTypeString map:jpStorageValueJsonKey value:XiaoGang
+ P name:normalValue value:(null)
+ P name:normalStorageValue value:(null)
+ P name:weakStorageValue value:(null)
+ P name:assignIntValue value:0
+ P name:assignDoubleStorageValue value:(null)
+ P name:getterSetterIntValue value:0
+ P name:getterSetterIntStorageValue value:(null)
+ P name:copyGetterSetterStringStorageValue value:(null)
+JP name:jpStorageCharValue1 type:RFJModelPropertyTypeChar map:jpStorageCharValueJsonKey1 value:-61
+JP name:jpStorageCharValue2 type:RFJModelPropertyTypeChar map:jpStorageCharValueJsonKey2 value:-61

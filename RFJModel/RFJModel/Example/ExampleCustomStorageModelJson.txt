@@ -1,0 +1,6 @@
+{
+	"jpValueJsonKey":"XiaoMing",
+	"jpStorageValueJsonKey":"XiaoGang",
+	"jpStorageCharValueJsonKey1": 120003,
+	"jpStorageCharValueJsonKey2": "120003",
+}

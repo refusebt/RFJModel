@@ -1,0 +1,144 @@
+
+input:
+{
+	"name":"XiaoMing",
+	"sex":"1",
+	"age": 123,
+	"address":null,
+	"uid":9876543210123456,
+	"unuse":"unuse value",
+	"list":[1,2,3,4,5,6],
+	"dict":
+			{
+				"value1":"1",
+				"value2":2
+			},
+	"bYes":"Yes",
+	"bTrue":true,
+	"bTrue2":"true",
+	"b0":0,
+	"b1":1,
+	"bNo":"no",
+	"bFalse":false,
+	"model":
+			{
+				"name":"SubModel",
+				"size":123
+			},
+	"models":
+			[
+				{
+					"name":"SubModel1",
+					"size":1,
+					"GrandsonModel":
+						{
+							"name":"GM1"
+						},
+				},
+				{
+					"name":"SubModel2",
+					"size":2,
+					"GrandsonModel":
+						{
+							"name":"GM2"
+						},
+				},
+				{
+					"name":"SubModel3",
+					"size":3,
+					"GrandsonModel":
+						{
+							"name":"GM3"
+						},
+				},
+			],
+	"mstr":"mutableString",
+	"mArray":[{"k":"v"}, "string", [1, 2],],
+	"mDict":{"k1":"string", "k2":[1,2], "k3":{"k":"v"},},
+	"mModelArray":[{"name":"SubModel","size":123},{"name":"SubModel","size":123},],
+	"errString" : [],
+	"errArray" : {},
+	"errDict" : "errString",
+	"errModelArray" : "errString",
+	"errModel" : "errModel",
+}
+
+
+output:
+
+JP name:name type:RFJModelPropertyTypeString map:name value:XiaoMing
+JP name:sex type:RFJModelPropertyTypeInt16 map:sex value:1
+JP name:age type:RFJModelPropertyTypeInt32 map:age value:123
+JP name:address type:RFJModelPropertyTypeString map:address value:(null)
+JP name:uid type:RFJModelPropertyTypeInt64 map:uid value:9876543210123456
+JP name:unset type:RFJModelPropertyTypeInt64 map:unset value:0
+JP name:list type:RFJModelPropertyTypeArray map:list value:(
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+)
+JP name:dict type:RFJModelPropertyTypeDictionary map:dict value:{
+    value1 = 1;
+    value2 = 2;
+}
+JP name:subModel type:RFJModelPropertyTypeModel map:model value:
+	JP name:name type:RFJModelPropertyTypeString map:name value:SubModel
+	JP name:size type:RFJModelPropertyTypeInt64 map:size value:123
+	JP name:gm type:RFJModelPropertyTypeModel map:GrandsonModel value:
+JP name:subModels type:RFJModelPropertyTypeModelArray map:models value:
+	-
+	JP name:name type:RFJModelPropertyTypeString map:name value:SubModel1
+	JP name:size type:RFJModelPropertyTypeInt64 map:size value:1
+	JP name:gm type:RFJModelPropertyTypeModel map:GrandsonModel value:
+		JP name:name type:RFJModelPropertyTypeString map:name value:GM1
+		 P name:tag value:0
+	-
+	JP name:name type:RFJModelPropertyTypeString map:name value:SubModel2
+	JP name:size type:RFJModelPropertyTypeInt64 map:size value:2
+	JP name:gm type:RFJModelPropertyTypeModel map:GrandsonModel value:
+		JP name:name type:RFJModelPropertyTypeString map:name value:GM2
+		 P name:tag value:0
+	-
+	JP name:name type:RFJModelPropertyTypeString map:name value:SubModel3
+	JP name:size type:RFJModelPropertyTypeInt64 map:size value:3
+	JP name:gm type:RFJModelPropertyTypeModel map:GrandsonModel value:
+		JP name:name type:RFJModelPropertyTypeString map:name value:GM3
+		 P name:tag value:0
+JP name:mstr type:RFJModelPropertyTypeMutableString map:mstr value:mutableString
+JP name:mArray type:RFJModelPropertyTypeMutableArray map:mArray value:(
+        {
+        k = v;
+    },
+    string,
+        (
+        1,
+        2
+    )
+)
+JP name:mDict type:RFJModelPropertyTypeMutableDictionary map:mDict value:{
+    k1 = string;
+    k2 =     (
+        1,
+        2
+    );
+    k3 =     {
+        k = v;
+    };
+}
+JP name:mModelArray type:RFJModelPropertyTypeMutableModelArray map:mModelArray value:
+	-
+	JP name:name type:RFJModelPropertyTypeString map:name value:SubModel
+	JP name:size type:RFJModelPropertyTypeInt64 map:size value:123
+	JP name:gm type:RFJModelPropertyTypeModel map:GrandsonModel value:
+	-
+	JP name:name type:RFJModelPropertyTypeString map:name value:SubModel
+	JP name:size type:RFJModelPropertyTypeInt64 map:size value:123
+	JP name:gm type:RFJModelPropertyTypeModel map:GrandsonModel value:
+JP name:errString type:RFJModelPropertyTypeString map:errString value:(null)
+JP name:errArray type:RFJModelPropertyTypeArray map:errArray value:(null)
+JP name:errDict type:RFJModelPropertyTypeDictionary map:errDict value:(null)
+JP name:errModelArray type:RFJModelPropertyTypeModelArray map:errModelArray value:
+JP name:errModel type:RFJModelPropertyTypeModel map:errModel value:

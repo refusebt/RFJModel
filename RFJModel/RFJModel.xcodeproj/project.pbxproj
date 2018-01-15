@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3910A6B71F56A37B002E12F6 /* ExampleUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3910A6B61F56A37B002E12F6 /* ExampleUD.m */; };
+		397C841B1F0B6202009982F8 /* result_Type.txt in Resources */ = {isa = PBXBuildFile; fileRef = 397C841A1F0B6202009982F8 /* result_Type.txt */; };
+		397C841D1F0B620E009982F8 /* result_Json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 397C841C1F0B620E009982F8 /* result_Json.txt */; };
+		397C841F1F0B6227009982F8 /* result_Inherit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 397C841E1F0B6227009982F8 /* result_Inherit.txt */; };
+		397C84211F0B624B009982F8 /* result_CustomStorage.txt in Resources */ = {isa = PBXBuildFile; fileRef = 397C84201F0B624B009982F8 /* result_CustomStorage.txt */; };
+		397C84271F0B67F8009982F8 /* NSObject+RFSafeTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C84261F0B67F8009982F8 /* NSObject+RFSafeTransform.m */; };
+		397C842A1F0B6AA2009982F8 /* NSString+RFSafeTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C84291F0B6AA2009982F8 /* NSString+RFSafeTransform.m */; };
+		397C842D1F0B6C11009982F8 /* NSObject+RFAssociatedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C842C1F0B6C11009982F8 /* NSObject+RFAssociatedValue.m */; };
+		397C84361F0B75CC009982F8 /* NSObject+RFJModelProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C84351F0B75CC009982F8 /* NSObject+RFJModelProperty.m */; };
+		397D9AC41F0B9D1D0028E26E /* RFJModelProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 397D9AC31F0B9D1D0028E26E /* RFJModelProperty.m */; };
+		397D9AC71F0BABE80028E26E /* NSObject+RFJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 397D9AC61F0BABE80028E26E /* NSObject+RFJModel.m */; };
+		3992C1F01F04D4D900433314 /* ExampleCustomStorageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3992C1EF1F04D4D900433314 /* ExampleCustomStorageModel.m */; };
+		3992C1F21F04DA4900433314 /* ExampleCustomStorageModelJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3992C1F11F04DA4900433314 /* ExampleCustomStorageModelJson.txt */; };
+		39FFB9AF1F0F6646005B2783 /* RFJUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 39FFB9AE1F0F6646005B2783 /* RFJUserDefaults.m */; };
 		78DA97531A53951B006B0597 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97521A53951B006B0597 /* main.m */; };
 		78DA97561A53951B006B0597 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97551A53951B006B0597 /* AppDelegate.m */; };
 		78DA97591A53951B006B0597 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97581A53951B006B0597 /* ViewController.m */; };
@@ -18,8 +32,6 @@
 		78DA977F1A539581006B0597 /* ExampleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA97791A539581006B0597 /* ExampleModel.m */; };
 		78DA97801A539581006B0597 /* ExampleType.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78DA977A1A539581006B0597 /* ExampleType.txt */; };
 		78DA97811A539581006B0597 /* RFJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA977D1A539581006B0597 /* RFJModel.m */; };
-		78DC80251A58DCB100D2019F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 78DC80241A58DCB100D2019F /* README.md */; };
-		78DC80271A590C5400D2019F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78DC80261A590C5400D2019F /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +45,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3910A6B51F56A37B002E12F6 /* ExampleUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleUD.h; sourceTree = "<group>"; };
+		3910A6B61F56A37B002E12F6 /* ExampleUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleUD.m; sourceTree = "<group>"; };
+		397C841A1F0B6202009982F8 /* result_Type.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = result_Type.txt; sourceTree = "<group>"; };
+		397C841C1F0B620E009982F8 /* result_Json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = result_Json.txt; sourceTree = "<group>"; };
+		397C841E1F0B6227009982F8 /* result_Inherit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = result_Inherit.txt; sourceTree = "<group>"; };
+		397C84201F0B624B009982F8 /* result_CustomStorage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = result_CustomStorage.txt; sourceTree = "<group>"; };
+		397C84251F0B67F8009982F8 /* NSObject+RFSafeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSObject+RFSafeTransform.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		397C84261F0B67F8009982F8 /* NSObject+RFSafeTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+RFSafeTransform.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		397C84281F0B6AA2009982F8 /* NSString+RFSafeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RFSafeTransform.h"; sourceTree = "<group>"; };
+		397C84291F0B6AA2009982F8 /* NSString+RFSafeTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RFSafeTransform.m"; sourceTree = "<group>"; };
+		397C842B1F0B6C11009982F8 /* NSObject+RFAssociatedValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSObject+RFAssociatedValue.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		397C842C1F0B6C11009982F8 /* NSObject+RFAssociatedValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+RFAssociatedValue.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		397C84341F0B75CC009982F8 /* NSObject+RFJModelProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSObject+RFJModelProperty.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		397C84351F0B75CC009982F8 /* NSObject+RFJModelProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+RFJModelProperty.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		397D9AC21F0B9D1D0028E26E /* RFJModelProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJModelProperty.h; sourceTree = "<group>"; };
+		397D9AC31F0B9D1D0028E26E /* RFJModelProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJModelProperty.m; sourceTree = "<group>"; };
+		397D9AC51F0BABE80028E26E /* NSObject+RFJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RFJModel.h"; sourceTree = "<group>"; };
+		397D9AC61F0BABE80028E26E /* NSObject+RFJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RFJModel.m"; sourceTree = "<group>"; };
+		3992C1EE1F04D4D900433314 /* ExampleCustomStorageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleCustomStorageModel.h; sourceTree = "<group>"; };
+		3992C1EF1F04D4D900433314 /* ExampleCustomStorageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleCustomStorageModel.m; sourceTree = "<group>"; };
+		3992C1F11F04DA4900433314 /* ExampleCustomStorageModelJson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExampleCustomStorageModelJson.txt; sourceTree = "<group>"; };
+		39FFB9AD1F0F6646005B2783 /* RFJUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJUserDefaults.h; sourceTree = "<group>"; };
+		39FFB9AE1F0F6646005B2783 /* RFJUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJUserDefaults.m; sourceTree = "<group>"; };
 		78DA974D1A53951B006B0597 /* RFJModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFJModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DA97511A53951B006B0597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DA97521A53951B006B0597 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,7 +86,7 @@
 		78DA97791A539581006B0597 /* ExampleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleModel.m; sourceTree = "<group>"; };
 		78DA977A1A539581006B0597 /* ExampleType.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExampleType.txt; sourceTree = "<group>"; };
 		78DA977C1A539581006B0597 /* RFJModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJModel.h; sourceTree = "<group>"; };
-		78DA977D1A539581006B0597 /* RFJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJModel.m; sourceTree = "<group>"; };
+		78DA977D1A539581006B0597 /* RFJModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = RFJModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		78DC80241A58DCB100D2019F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		78DC80261A590C5400D2019F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +179,15 @@
 				78DA97781A539581006B0597 /* ExampleModel.h */,
 				78DA97791A539581006B0597 /* ExampleModel.m */,
 				78DA977A1A539581006B0597 /* ExampleType.txt */,
+				3992C1EE1F04D4D900433314 /* ExampleCustomStorageModel.h */,
+				3992C1EF1F04D4D900433314 /* ExampleCustomStorageModel.m */,
+				3992C1F11F04DA4900433314 /* ExampleCustomStorageModelJson.txt */,
+				397C841A1F0B6202009982F8 /* result_Type.txt */,
+				397C841C1F0B620E009982F8 /* result_Json.txt */,
+				397C841E1F0B6227009982F8 /* result_Inherit.txt */,
+				397C84201F0B624B009982F8 /* result_CustomStorage.txt */,
+				3910A6B51F56A37B002E12F6 /* ExampleUD.h */,
+				3910A6B61F56A37B002E12F6 /* ExampleUD.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -151,8 +195,22 @@
 		78DA977B1A539581006B0597 /* RFJModel */ = {
 			isa = PBXGroup;
 			children = (
+				39FFB9AD1F0F6646005B2783 /* RFJUserDefaults.h */,
+				39FFB9AE1F0F6646005B2783 /* RFJUserDefaults.m */,
 				78DA977C1A539581006B0597 /* RFJModel.h */,
 				78DA977D1A539581006B0597 /* RFJModel.m */,
+				397D9AC51F0BABE80028E26E /* NSObject+RFJModel.h */,
+				397D9AC61F0BABE80028E26E /* NSObject+RFJModel.m */,
+				397C84251F0B67F8009982F8 /* NSObject+RFSafeTransform.h */,
+				397C84261F0B67F8009982F8 /* NSObject+RFSafeTransform.m */,
+				397C84281F0B6AA2009982F8 /* NSString+RFSafeTransform.h */,
+				397C84291F0B6AA2009982F8 /* NSString+RFSafeTransform.m */,
+				397C842B1F0B6C11009982F8 /* NSObject+RFAssociatedValue.h */,
+				397C842C1F0B6C11009982F8 /* NSObject+RFAssociatedValue.m */,
+				397C84341F0B75CC009982F8 /* NSObject+RFJModelProperty.h */,
+				397C84351F0B75CC009982F8 /* NSObject+RFJModelProperty.m */,
+				397D9AC21F0B9D1D0028E26E /* RFJModelProperty.h */,
+				397D9AC31F0B9D1D0028E26E /* RFJModelProperty.m */,
 			);
 			path = RFJModel;
 			sourceTree = "<group>";
@@ -201,11 +259,12 @@
 		78DA97451A53951B006B0597 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = TechAtk;
 				TargetAttributes = {
 					78DA974C1A53951B006B0597 = {
 						CreatedOnToolsVersion = 6.1;
+						ProvisioningStyle = Manual;
 					};
 					78DA97651A53951B006B0597 = {
 						CreatedOnToolsVersion = 6.1;
@@ -237,11 +296,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DC80271A590C5400D2019F /* LICENSE in Resources */,
+				397C84211F0B624B009982F8 /* result_CustomStorage.txt in Resources */,
+				397C841F1F0B6227009982F8 /* result_Inherit.txt in Resources */,
+				397C841B1F0B6202009982F8 /* result_Type.txt in Resources */,
 				78DA97801A539581006B0597 /* ExampleType.txt in Resources */,
 				78DA975C1A53951B006B0597 /* Main.storyboard in Resources */,
 				78DA97611A53951B006B0597 /* LaunchScreen.xib in Resources */,
 				78DA975E1A53951B006B0597 /* Images.xcassets in Resources */,
+				397C841D1F0B620E009982F8 /* result_Json.txt in Resources */,
+				3992C1F21F04DA4900433314 /* ExampleCustomStorageModelJson.txt in Resources */,
 				78DA977E1A539581006B0597 /* ExampleJson.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,11 +323,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DC80251A58DCB100D2019F /* README.md in Sources */,
+				397C842D1F0B6C11009982F8 /* NSObject+RFAssociatedValue.m in Sources */,
+				397D9AC41F0B9D1D0028E26E /* RFJModelProperty.m in Sources */,
 				78DA97591A53951B006B0597 /* ViewController.m in Sources */,
 				78DA97561A53951B006B0597 /* AppDelegate.m in Sources */,
+				397C84271F0B67F8009982F8 /* NSObject+RFSafeTransform.m in Sources */,
+				3910A6B71F56A37B002E12F6 /* ExampleUD.m in Sources */,
+				397C842A1F0B6AA2009982F8 /* NSString+RFSafeTransform.m in Sources */,
+				39FFB9AF1F0F6646005B2783 /* RFJUserDefaults.m in Sources */,
 				78DA97811A539581006B0597 /* RFJModel.m in Sources */,
+				3992C1F01F04D4D900433314 /* ExampleCustomStorageModel.m in Sources */,
+				397C84361F0B75CC009982F8 /* NSObject+RFJModelProperty.m in Sources */,
 				78DA977F1A539581006B0597 /* ExampleModel.m in Sources */,
+				397D9AC71F0BABE80028E26E /* NSObject+RFJModel.m in Sources */,
 				78DA97531A53951B006B0597 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,15 +391,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -362,8 +437,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -371,6 +448,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -389,10 +467,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RFJModel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -400,10 +481,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RFJModel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -421,6 +505,7 @@
 				);
 				INFOPLIST_FILE = RFJModelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RFJModel.app/RFJModel";
 			};
@@ -436,6 +521,7 @@
 				);
 				INFOPLIST_FILE = RFJModelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TechAtk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RFJModel.app/RFJModel";
 			};

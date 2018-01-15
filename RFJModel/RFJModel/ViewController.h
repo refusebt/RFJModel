@@ -18,6 +18,7 @@
 - (IBAction)btnType_Click:(id)sender;
 - (IBAction)btnJson_Click:(id)sender;
 - (IBAction)btnInherit_Click:(id)sender;
+- (IBAction)btnCustomStorage_Click:(id)sender;
 
 @end
 
